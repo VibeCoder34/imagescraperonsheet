@@ -158,8 +158,9 @@ def submit_async_job(
     batch_index: int,
     batch_images: List[dict],
     background_url: Optional[str],
+    job_prefix: str,
 ) -> dict:
-    transaction_id = f"otomol-{listing['listing_id']}-batch-{batch_index}"
+    transaction_id = f"{job_prefix}-{listing['listing_id']}-batch-{batch_index}"
     body = {
         "images": [
             {
@@ -210,10 +211,11 @@ def main() -> None:
 
     csv_path = os.environ.get(
         "INPUT_CSV",
-        str(Path(__file__).resolve().parent.parent / "otomol_listings_by_order_2026-06-09.csv"),
+        str(Path(__file__).resolve().parent.parent / "listings_by_order.csv"),
     )
     limit = int(os.environ.get("LIMIT_LISTINGS", "0") or 0)
     delay_s = float(os.environ.get("SUBMIT_DELAY_SECONDS", "1"))
+    job_prefix = os.environ.get("JOB_ID_PREFIX", "listing")
 
     listings = load_listings(csv_path)
     if limit > 0:
@@ -230,7 +232,7 @@ def main() -> None:
         )
 
         for batch_index, batch_images in enumerate(batches):
-            transaction_id = f"otomol-{listing['listing_id']}-batch-{batch_index}"
+            transaction_id = f"{job_prefix}-{listing['listing_id']}-batch-{batch_index}"
             job_payload = {
                 "listing_id": listing["listing_id"],
                 "listing_url": listing["listing_url"],
@@ -288,6 +290,7 @@ def main() -> None:
                     batch_index=batch_index,
                     batch_images=batch_images,
                     background_url=background_url,
+                    job_prefix=job_prefix,
                 )
             except Exception as exc:
                 requests.patch(

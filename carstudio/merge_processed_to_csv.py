@@ -85,13 +85,13 @@ def main() -> None:
     service_key = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
     input_csv = os.environ.get(
         "INPUT_CSV",
-        str(Path(__file__).resolve().parent.parent / "otomol_listings_by_order_2026-06-09.csv"),
+        str(Path(__file__).resolve().parent.parent / "listings_by_order.csv"),
     )
     output_csv = os.environ.get(
         "MERGED_OUTPUT_CSV",
         str(
             Path(__file__).resolve().parent.parent
-            / "otomol_listings_by_order_with_processed_2026-06-09.csv"
+            / "listings_by_order_with_processed.csv"
         ),
     )
 

@@ -43,7 +43,7 @@ def main() -> None:
     service_key = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
     output_path = os.environ.get(
         "OUTPUT_CSV",
-        str(Path(__file__).resolve().parent / "otomol_processed_2026-06-09.csv"),
+        str(Path(__file__).resolve().parent / "processed_listings.csv"),
     )
 
     jobs = fetch_all(supabase_url, service_key, "carstudio_jobs")

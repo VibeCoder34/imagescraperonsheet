@@ -109,17 +109,17 @@ def enrich_rows_with_plates(rows: Sequence[dict], cache: Dict[str, Optional[str]
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Add plate numbers from Otomol listing pages to an images CSV."
+        description="Add plate numbers from listing pages to an images CSV."
     )
     parser.add_argument(
         "--input",
-        default="otomol_images.csv",
-        help="Input CSV with listing_url rows (default: otomol_images.csv)",
+        default="images.csv",
+        help="Input CSV with listing_url rows (default: images.csv)",
     )
     parser.add_argument(
         "--output",
-        default="otomol_images_with_plates.csv",
-        help="Output CSV path (default: otomol_images_with_plates.csv)",
+        default="images_with_plates.csv",
+        help="Output CSV path (default: images_with_plates.csv)",
     )
     parser.add_argument(
         "--delay",

@@ -1,5 +1,5 @@
 {
-  "name": "otomol-carstudio-webhook",
+  "name": "carstudio-webhook",
   "private": true,
   "type": "module",
   "dependencies": {
