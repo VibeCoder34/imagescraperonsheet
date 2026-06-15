@@ -16,5 +16,8 @@ carstudio/webhook/node_modules/
 .vercel/
 carstudio/webhook/.vercel/
 
+# Generated data
+*.csv
+
 # OS
 .DS_Store
